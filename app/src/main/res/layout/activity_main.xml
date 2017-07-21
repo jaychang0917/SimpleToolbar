@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.jaychang.widget.SimpleToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        app:stb_leftIcon="@drawable/ic_back"
+        app:stb_title="Title"
+        app:stb_titleTextGravity="center"
+        app:stb_rightIcon="@drawable/ic_setting"
+        app:stb_rightIcon2="@drawable/ic_setting"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- global widget style attributes -->
+    <attr name="simpleToolbarTitleTextColor" format="reference|color" />
+    <attr name="simpleToolbarTitleTextSize" format="reference|dimension" />
+    <attr name="simpleToolbarTitleTextGravity">
+        <enum name="left" value="0" />
+        <enum name="center" value="1" />
+    </attr>
+    <attr name="simpleToolbarTitleTextStyle">
+        <flag name="normal" value="0" />
+        <flag name="bold" value="1" />
+        <flag name="italic" value="2" />
+    </attr>
+    <attr name="simpleToolbarTextColor" format="reference|color" />
+    <attr name="simpleToolbarTextSize" format="reference|dimension" />
+    <attr name="simpleToolbarTextStyle">
+        <flag name="normal" value="0" />
+        <flag name="bold" value="1" />
+        <flag name="italic" value="2" />
+    </attr>
+    <attr name="simpleToolbarBackgroundColor" format="reference|color" />
+    <attr name="simpleToolbarHeight" format="reference|dimension" />
+
+    <!-- widget style attributes -->
+    <declare-styleable name="SimpleToolbar">
+
+        <attr name="stb_leftIcon" format="reference" />
+        <attr name="stb_leftText" format="reference|string" />
+        <attr name="stb_leftTextSize" format="dimension|reference" />
+        <attr name="stb_leftTextColor" format="reference|color" />
+        <attr name="stb_leftTextStyle">
+            <flag name="normal" value="0" />
+            <flag name="bold" value="1" />
+            <flag name="italic" value="2" />
+        </attr>
+        <attr name="stb_leftTextIcon" format="reference" />
+        <attr name="stb_leftTextIconPosition">
+            <enum name="left" value="0" />
+            <enum name="right" value="1" />
+        </attr>
+
+        <attr name="stb_title" format="string" />
+        <attr name="stb_titleTextSize" format="reference|dimension" />
+        <attr name="stb_titleTextColor" format="reference|color" />
+        <attr name="stb_titleTextStyle">
+            <flag name="normal" value="0" />
+            <flag name="bold" value="1" />
+            <flag name="italic" value="2" />
+        </attr>
+        <attr name="stb_titleTextIcon" format="reference" />
+        <attr name="stb_titleTextIconPosition">
+            <enum name="left" value="0" />
+            <enum name="right" value="1" />
+        </attr>
+        <attr name="stb_titleTextGravity">
+            <enum name="left" value="0" />
+            <enum name="center" value="1" />
+        </attr>
+
+        <attr name="stb_rightIcon" format="reference" />
+        <attr name="stb_rightIcon2" format="reference" />
+        <attr name="stb_rightIcon3" format="reference" />
+        <attr name="stb_rightIcon4" format="reference" />
+        <attr name="stb_rightIcon5" format="reference" />
+        <attr name="stb_rightText" format="string" />
+        <attr name="stb_rightTextSize" format="reference|dimension" />
+        <attr name="stb_rightTextColor" format="reference|color" />
+        <attr name="stb_rightTextStyle">
+            <flag name="normal" value="0" />
+            <flag name="bold" value="1" />
+            <flag name="italic" value="2" />
+        </attr>
+        <attr name="stb_rightTextIcon" format="reference" />
+        <attr name="stb_rightTextIconPosition">
+            <enum name="right" value="0" />
+            <enum name="left" value="1" />
+        </attr>
+
+    </declare-styleable>
+
+</resources>
