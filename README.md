@@ -27,7 +27,7 @@ dependencies {
 
 ## Basic Usage
 ```xml
-<com.jaychang.widget.SimpleToolbar
+<com.jaychang.widget.stb.SimpleToolbar
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
