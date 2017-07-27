@@ -1,4 +1,4 @@
-package com.jaychang.widget;
+package com.jaychang.widget.stb;
 
 import android.content.Context;
 import android.content.res.TypedArray;

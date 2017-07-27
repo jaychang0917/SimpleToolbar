@@ -52,7 +52,7 @@
 
     <ViewStub
         android:id="@+id/rightIcon2Stub"
-        style="@style/IosToolbarIcon"
+        style="@style/SimpleToolbarIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@+id/rightIcon"
@@ -63,7 +63,7 @@
 
     <ViewStub
         android:id="@+id/rightIcon3Stub"
-        style="@style/IosToolbarIcon"
+        style="@style/SimpleToolbarIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@id/rightIcon2"
@@ -74,7 +74,7 @@
 
     <ViewStub
         android:id="@+id/rightIcon4Stub"
-        style="@style/IosToolbarIcon"
+        style="@style/SimpleToolbarIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@id/rightIcon3"
@@ -85,7 +85,7 @@
 
     <ViewStub
         android:id="@+id/rightIcon5Stub"
-        style="@style/IosToolbarIcon"
+        style="@style/SimpleToolbarIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@id/rightIcon4"

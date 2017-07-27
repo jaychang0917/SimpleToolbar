@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="IosToolbarIcon">
+    <style name="SimpleToolbarIcon">
         <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
         <item name="android:padding">4dp</item>
         <item name="android:layout_centerVertical">true</item>
     </style>
 
-    <style name="IosToolbarText">
+    <style name="SimpleToolbarText">
         <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:gravity">center</item>

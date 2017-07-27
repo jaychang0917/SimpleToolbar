@@ -1,4 +1,4 @@
-package com.jaychang.widget;
+package com.jaychang.widget.stb;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jaychang.utils.AppUtils;
+import com.jaychang.widget.R;
 
 import static android.graphics.Color.WHITE;
 
