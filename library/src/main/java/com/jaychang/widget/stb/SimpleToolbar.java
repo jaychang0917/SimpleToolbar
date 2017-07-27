@@ -19,7 +19,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jaychang.utils.AppUtils;
-import com.jaychang.widget.R;
 
 import static android.graphics.Color.WHITE;
 
