@@ -81,6 +81,9 @@ public final class SimpleToolbar extends RelativeLayout {
   private int simpleToolbarTextStyle;
   private int simpleToolbarBackgroundColor;
   private int simpleToolbarHeight;
+  private boolean isTitleInited;
+  private boolean isLeftTextInited;
+  private boolean isRightTextInited;
 
   public SimpleToolbar(Context context) {
     this(context, null);
@@ -202,6 +205,7 @@ public final class SimpleToolbar extends RelativeLayout {
     if (!TextUtils.isEmpty(leftText)) {
       setLeftText(leftText);
     } else {
+      isLeftTextInited = false;
       return;
     }
 
@@ -227,12 +231,15 @@ public final class SimpleToolbar extends RelativeLayout {
     if (simpleToolbarTextSize != 0) {
       setLeftTextSize(simpleToolbarTextSize);
     }
+
+    isLeftTextInited = true;
   }
 
   private void initTitle() {
     if (!TextUtils.isEmpty(title)) {
       setTitle(title);
     } else {
+      isTitleInited = false;
       return;
     }
 
@@ -262,6 +269,8 @@ public final class SimpleToolbar extends RelativeLayout {
     } else if (simpleToolbarTextStyle != 0) {
       setTitleTextTypeface(simpleToolbarTextStyle);
     }
+
+    isTitleInited = true;
   }
 
   private void initRightIcon() {
@@ -286,6 +295,7 @@ public final class SimpleToolbar extends RelativeLayout {
     if (!TextUtils.isEmpty(rightText)) {
       setRightText(rightText);
     } else {
+      isRightTextInited = false;
       return;
     }
 
@@ -313,6 +323,8 @@ public final class SimpleToolbar extends RelativeLayout {
     if (simpleToolbarTextSize != 0) {
       setRightTextSize(simpleToolbarTextSize);
     }
+
+    isRightTextInited = true;
   }
 
   private void initBackground() {
@@ -334,6 +346,9 @@ public final class SimpleToolbar extends RelativeLayout {
   }
 
   public void setTitle(CharSequence title) {
+    if (!isTitleInited) {
+      initTitle();
+    }
     if (titleTextView == null) {
       titleTextView = (TextView) titleTextViewStub.inflate();
     }
@@ -406,6 +421,9 @@ public final class SimpleToolbar extends RelativeLayout {
   }
 
   public void setLeftText(CharSequence text) {
+    if (!isLeftTextInited) {
+      initLeftText();
+    }
     if (leftTextView == null) {
       leftTextView = (TextView) leftTextViewStub.inflate();
     }
@@ -457,6 +475,9 @@ public final class SimpleToolbar extends RelativeLayout {
   }
 
   public void setRightText(CharSequence text) {
+    if (!isRightTextInited) {
+      initRightText();
+    }
     if (rightTextView == null) {
       rightTextView = (TextView) rightTextViewStub.inflate();
     }
