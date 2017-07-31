@@ -81,9 +81,9 @@ public final class SimpleToolbar extends RelativeLayout {
   private int simpleToolbarTextStyle;
   private int simpleToolbarBackgroundColor;
   private int simpleToolbarHeight;
-  private boolean isTitleInited;
-  private boolean isLeftTextInited;
-  private boolean isRightTextInited;
+  private boolean isTitleInited = true;
+  private boolean isLeftTextInited = true;
+  private boolean isRightTextInited = true;
 
   public SimpleToolbar(Context context) {
     this(context, null);
