@@ -362,12 +362,12 @@ public final class SimpleToolbar extends RelativeLayout {
     }
   }
 
-  private void alightTitleLeft() {
+  public void alightTitleLeft() {
     LayoutParams params = ((LayoutParams) titleTextView.getLayoutParams());
     params.leftMargin = AppUtils.dp2px(getContext(), 72 - 16);
   }
 
-  private void alightTitleCenter() {
+  public void alightTitleCenter() {
     LayoutParams params = ((LayoutParams) titleTextView.getLayoutParams());
     params.addRule(RelativeLayout.CENTER_IN_PARENT);
     titleTextView.setLayoutParams(params);
