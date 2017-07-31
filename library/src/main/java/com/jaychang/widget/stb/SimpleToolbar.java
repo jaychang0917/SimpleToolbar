@@ -45,14 +45,14 @@ public final class SimpleToolbar extends RelativeLayout {
   private View rootView;
 
   private int leftIcon;
-  private String leftText;
+  private CharSequence leftText;
   private int leftTextSize;
   private int leftTextStyle;
   private int leftTextIcon;
   private int leftTextIconPosition;
   private ColorStateList leftTextColor;
 
-  private String title;
+  private CharSequence title;
   private int titleTextSize;
   private int titleTextStyle;
   private int titleTextIcon;
@@ -65,7 +65,7 @@ public final class SimpleToolbar extends RelativeLayout {
   private int rightIcon3;
   private int rightIcon4;
   private int rightIcon5;
-  private String rightText;
+  private CharSequence rightText;
   private int rightTextSize;
   private int rightTextIcon;
   private int rightTextIconPosition;
@@ -346,6 +346,8 @@ public final class SimpleToolbar extends RelativeLayout {
   }
 
   public void setTitle(CharSequence title) {
+    this.title = title;
+
     if (!isTitleInited) {
       initTitle();
     }
@@ -421,6 +423,7 @@ public final class SimpleToolbar extends RelativeLayout {
   }
 
   public void setLeftText(CharSequence text) {
+    this.leftText = text;
     if (!isLeftTextInited) {
       initLeftText();
     }
@@ -475,6 +478,7 @@ public final class SimpleToolbar extends RelativeLayout {
   }
 
   public void setRightText(CharSequence text) {
+    this.rightText = text;
     if (!isRightTextInited) {
       initRightText();
     }
