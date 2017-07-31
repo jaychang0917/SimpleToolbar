@@ -20,9 +20,9 @@ import android.widget.TextView;
 
 import com.jaychang.utils.AppUtils;
 
-import static android.graphics.Color.WHITE;
-
 public final class SimpleToolbar extends RelativeLayout {
+
+  private final int WHITE = ContextCompat.getColor(getContext(), android.R.color.white);
 
   private ViewStub leftIconViewStub;
   private ViewStub leftTextViewStub;
@@ -81,9 +81,9 @@ public final class SimpleToolbar extends RelativeLayout {
   private int simpleToolbarTextStyle;
   private int simpleToolbarBackgroundColor;
   private int simpleToolbarHeight;
-  private boolean isTitleInited = true;
-  private boolean isLeftTextInited = true;
-  private boolean isRightTextInited = true;
+  private boolean isTitleComponentInited = true;
+  private boolean isLeftComponentTextInited = true;
+  private boolean isRightComponentTextInited = true;
 
   public SimpleToolbar(Context context) {
     this(context, null);
@@ -200,15 +200,15 @@ public final class SimpleToolbar extends RelativeLayout {
   }
 
   private void initLeftText() {
-    final int WHITE = ContextCompat.getColor(getContext(), android.R.color.white);
-
     if (!TextUtils.isEmpty(leftText)) {
       setLeftText(leftText);
+      initLeftTextComponent();
     } else {
-      isLeftTextInited = false;
-      return;
+      isLeftComponentTextInited = false;
     }
+  }
 
+  private void initLeftTextComponent() {
     if (leftTextIcon != 0) {
       setLeftTextIcon(leftTextIcon);
     }
@@ -232,17 +232,19 @@ public final class SimpleToolbar extends RelativeLayout {
       setLeftTextSize(simpleToolbarTextSize);
     }
 
-    isLeftTextInited = true;
+    isLeftComponentTextInited = true;
   }
 
   private void initTitle() {
     if (!TextUtils.isEmpty(title)) {
       setTitle(title);
+      initTitleComponent();
     } else {
-      isTitleInited = false;
-      return;
+      isTitleComponentInited = false;
     }
+  }
 
+  private void initTitleComponent() {
     if (titleTextIcon != 0) {
       setTitleTextIcon(titleTextIcon);
     }
@@ -270,7 +272,7 @@ public final class SimpleToolbar extends RelativeLayout {
       setTitleTextTypeface(simpleToolbarTextStyle);
     }
 
-    isTitleInited = true;
+    isTitleComponentInited = true;
   }
 
   private void initRightIcon() {
@@ -294,11 +296,13 @@ public final class SimpleToolbar extends RelativeLayout {
   private void initRightText() {
     if (!TextUtils.isEmpty(rightText)) {
       setRightText(rightText);
+      initRightTextComponent();
     } else {
-      isRightTextInited = false;
-      return;
+      isRightComponentTextInited = false;
     }
+  }
 
+  private void initRightTextComponent() {
     if (rightTextIcon != 0) {
       setRightTextIcon(rightTextIcon);
     }
@@ -324,7 +328,7 @@ public final class SimpleToolbar extends RelativeLayout {
       setRightTextSize(simpleToolbarTextSize);
     }
 
-    isRightTextInited = true;
+    isRightComponentTextInited = true;
   }
 
   private void initBackground() {
@@ -346,13 +350,11 @@ public final class SimpleToolbar extends RelativeLayout {
   }
 
   public void setTitle(CharSequence title) {
-    this.title = title;
-
-    if (!isTitleInited) {
-      initTitle();
-    }
     if (titleTextView == null) {
       titleTextView = (TextView) titleTextViewStub.inflate();
+    }
+    if (!isTitleComponentInited) {
+      initTitleComponent();
     }
     titleTextView.setClickable(false);
     titleTextView.setText(title);
@@ -423,12 +425,11 @@ public final class SimpleToolbar extends RelativeLayout {
   }
 
   public void setLeftText(CharSequence text) {
-    this.leftText = text;
-    if (!isLeftTextInited) {
-      initLeftText();
-    }
     if (leftTextView == null) {
       leftTextView = (TextView) leftTextViewStub.inflate();
+    }
+    if (!isLeftComponentTextInited) {
+      initLeftTextComponent();
     }
     leftTextView.setText(text);
   }
@@ -478,12 +479,11 @@ public final class SimpleToolbar extends RelativeLayout {
   }
 
   public void setRightText(CharSequence text) {
-    this.rightText = text;
-    if (!isRightTextInited) {
-      initRightText();
-    }
     if (rightTextView == null) {
       rightTextView = (TextView) rightTextViewStub.inflate();
+    }
+    if (!isRightComponentTextInited) {
+      initRightTextComponent();
     }
     rightTextView.setText(text);
   }
