@@ -334,7 +334,9 @@ public final class SimpleToolbar extends RelativeLayout {
   }
 
   public void setTitle(CharSequence title) {
-    titleTextView = (TextView) titleTextViewStub.inflate();
+    if (titleTextView == null) {
+      titleTextView = (TextView) titleTextViewStub.inflate();
+    }
     titleTextView.setClickable(false);
     titleTextView.setText(title);
 
@@ -404,7 +406,9 @@ public final class SimpleToolbar extends RelativeLayout {
   }
 
   public void setLeftText(CharSequence text) {
-    leftTextView = (TextView) leftTextViewStub.inflate();
+    if (leftTextView == null) {
+      leftTextView = (TextView) leftTextViewStub.inflate();
+    }
     leftTextView.setText(text);
   }
 
@@ -429,7 +433,9 @@ public final class SimpleToolbar extends RelativeLayout {
   }
 
   public void setLeftIcon(int drawableRes) {
-    leftIconView = (ImageButton) leftIconViewStub.inflate();
+    if (leftIconView == null) {
+      leftIconView = (ImageButton) leftIconViewStub.inflate();
+    }
     leftIconView.setImageResource(drawableRes);
   }
 
@@ -451,7 +457,9 @@ public final class SimpleToolbar extends RelativeLayout {
   }
 
   public void setRightText(CharSequence text) {
-    rightTextView = (TextView) rightTextViewStub.inflate();
+    if (rightTextView == null) {
+      rightTextView = (TextView) rightTextViewStub.inflate();
+    }
     rightTextView.setText(text);
   }
 
@@ -481,27 +489,37 @@ public final class SimpleToolbar extends RelativeLayout {
   }
 
   public void setRightIcon(int drawableRes) {
-    rightIconView = (ImageButton) rightIconViewStub.inflate();
+    if (rightIconView == null) {
+      rightIconView = (ImageButton) rightIconViewStub.inflate();
+    }
     rightIconView.setImageResource(drawableRes);
   }
 
   public void setRightIcon2(int drawableRes) {
-    rightIcon2View = (ImageButton) rightIcon2ViewStub.inflate();
+    if (rightIcon2View == null) {
+      rightIcon2View = (ImageButton) rightIcon2ViewStub.inflate();
+    }
     rightIcon2View.setImageResource(drawableRes);
   }
 
   public void setRightIcon3(int drawableRes) {
-    rightIcon3View = (ImageButton) rightIcon3ViewStub.inflate();
+    if (rightIcon3View == null) {
+      rightIcon3View = (ImageButton) rightIcon3ViewStub.inflate();
+    }
     rightIcon3View.setImageResource(drawableRes);
   }
 
   public void setRightIcon4(int drawableRes) {
-    rightIcon4View = (ImageButton) rightIcon4ViewStub.inflate();
+    if (rightIcon4View == null) {
+      rightIcon4View = (ImageButton) rightIcon4ViewStub.inflate();
+    }
     rightIcon4View.setImageResource(drawableRes);
   }
 
   public void setRightIcon5(int drawableRes) {
-    rightIcon5View = (ImageButton) rightIcon5ViewStub.inflate();
+    if (rightIcon5View == null) {
+      rightIcon5View = (ImageButton) rightIcon5ViewStub.inflate();
+    }
     rightIcon5View.setImageResource(drawableRes);
   }
 
