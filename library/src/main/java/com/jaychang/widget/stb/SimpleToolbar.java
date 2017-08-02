@@ -350,7 +350,7 @@ public final class SimpleToolbar extends RelativeLayout {
   }
 
   public void setTitle(CharSequence title) {
-    inflateIfNeed(titleTextView, titleTextViewStub);
+    inflateTitleViewIfNeed();
     if (!isTitleComponentInited) {
       initTitleComponent();
     }
@@ -380,20 +380,20 @@ public final class SimpleToolbar extends RelativeLayout {
   }
 
   public void alightTitleLeft() {
-    inflateIfNeed(titleTextView, titleTextViewStub);
+    inflateTitleViewIfNeed();
     LayoutParams params = ((LayoutParams) titleTextView.getLayoutParams());
     params.leftMargin = AppUtils.dp2px(getContext(), 72 - 16);
   }
 
   public void alightTitleCenter() {
-    inflateIfNeed(titleTextView, titleTextViewStub);
+    inflateTitleViewIfNeed();
     LayoutParams params = ((LayoutParams) titleTextView.getLayoutParams());
     params.addRule(RelativeLayout.CENTER_IN_PARENT);
     titleTextView.setLayoutParams(params);
   }
 
   public void setTitleTextIcon(int titleTextIcon) {
-    inflateIfNeed(titleTextView, titleTextViewStub);
+    inflateTitleViewIfNeed();
     if (titleTextIconPosition == 0) {
       titleTextView.setCompoundDrawablesWithIntrinsicBounds(titleTextIcon, 0, 0, 0);
     } else {
@@ -402,27 +402,27 @@ public final class SimpleToolbar extends RelativeLayout {
   }
 
   public void setTitleTextColor(@ColorInt int color) {
-    inflateIfNeed(titleTextView, titleTextViewStub);
+    inflateTitleViewIfNeed();
     titleTextView.setTextColor(color);
   }
 
   public void setTitleTextColor(ColorStateList colorStateList) {
-    inflateIfNeed(titleTextView, titleTextViewStub);
+    inflateTitleViewIfNeed();
     titleTextView.setTextColor(colorStateList);
   }
 
   public void setTitleTextTypeface(int typeface) {
-    inflateIfNeed(titleTextView, titleTextViewStub);
+    inflateTitleViewIfNeed();
     titleTextView.setTypeface(null, typeface);
   }
 
   public void setTitleTextSize(@Px int textSize) {
-    inflateIfNeed(titleTextView, titleTextViewStub);
+    inflateTitleViewIfNeed();
     titleTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
   }
 
   public void setTitleOnClickListener(View.OnClickListener listener) {
-    inflateIfNeed(titleTextView, titleTextViewStub);
+    inflateTitleViewIfNeed();
     titleTextView.setOnClickListener(listener);
   }
 
@@ -434,7 +434,7 @@ public final class SimpleToolbar extends RelativeLayout {
   }
 
   public void setLeftText(CharSequence text) {
-    inflateIfNeed(leftTextView, leftTextViewStub);
+    inflateLeftTextViewIfNeed();
     if (!isLeftComponentTextInited) {
       initLeftTextComponent();
     }
@@ -442,7 +442,7 @@ public final class SimpleToolbar extends RelativeLayout {
   }
 
   public void setLeftTextIcon(int leftTextIcon) {
-    inflateIfNeed(leftTextView, leftTextViewStub);
+    inflateLeftTextViewIfNeed();
     if (leftTextIconPosition == 0) {
       leftTextView.setCompoundDrawablesWithIntrinsicBounds(leftTextIcon, 0, 0, 0);
     } else {
@@ -451,27 +451,22 @@ public final class SimpleToolbar extends RelativeLayout {
   }
 
   public void setLeftTextColor(@ColorInt int color) {
-    inflateIfNeed(leftTextView, leftTextViewStub);
+    inflateLeftTextViewIfNeed();
     leftTextView.setTextColor(color);
   }
 
   public void setLeftTextColor(ColorStateList colorStateList) {
-    inflateIfNeed(leftTextView, leftTextViewStub);
+    inflateLeftTextViewIfNeed();
     leftTextView.setTextColor(colorStateList);
   }
 
   public void setLeftTextStyle(int style) {
-    inflateIfNeed(leftTextView, leftTextViewStub);
+    inflateLeftTextViewIfNeed();
     leftTextView.setTypeface(null, style);
   }
 
-  public void setLeftIcon(int drawableRes) {
-    inflateIfNeed(leftIconView, leftIconViewStub);
-    leftIconView.setImageResource(drawableRes);
-  }
-
   public void setLeftTextSize(@Px int textSize) {
-    inflateIfNeed(leftTextView, leftTextViewStub);
+    inflateLeftTextViewIfNeed();
     leftTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
   }
 
@@ -481,12 +476,17 @@ public final class SimpleToolbar extends RelativeLayout {
   }
 
   public void setLeftTextOnClickListener(View.OnClickListener listener) {
-    inflateIfNeed(leftTextView, leftTextViewStub);
+    inflateLeftTextViewIfNeed();
     leftTextView.setOnClickListener(listener);
   }
 
+  public void setLeftIcon(int drawableRes) {
+    inflateLeftIconViewIfNeed();
+    leftIconView.setImageResource(drawableRes);
+  }
+
   public void setLeftIconOnClickListener(View.OnClickListener listener) {
-    inflateIfNeed(leftIconView, leftIconViewStub);
+    inflateLeftIconViewIfNeed();
     leftIconView.setOnClickListener(listener);
   }
 
@@ -498,7 +498,7 @@ public final class SimpleToolbar extends RelativeLayout {
   }
 
   public void setRightText(CharSequence text) {
-    inflateIfNeed(rightTextView, rightTextViewStub);
+    inflateRightTextViewIfNeed();
     if (!isRightComponentTextInited) {
       initRightTextComponent();
     }
@@ -506,7 +506,7 @@ public final class SimpleToolbar extends RelativeLayout {
   }
 
   public void setRightTextIcon(int rightTextIcon) {
-    inflateIfNeed(rightTextView, rightTextViewStub);
+    inflateRightTextViewIfNeed();
     if (rightTextIconPosition == 0) {
       rightTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, rightTextIcon, 0);
     } else {
@@ -520,86 +520,125 @@ public final class SimpleToolbar extends RelativeLayout {
   }
 
   public void setRightTextColor(@ColorInt int color) {
-    inflateIfNeed(rightTextView, rightTextViewStub);
+    inflateRightTextViewIfNeed();
     rightTextView.setTextColor(color);
   }
 
   public void setRightTextColor(ColorStateList colorStateList) {
-    inflateIfNeed(rightTextView, rightTextViewStub);
+    inflateRightTextViewIfNeed();
     rightTextView.setTextColor(colorStateList);
   }
 
   public void setRightTextStyle(int style) {
-    inflateIfNeed(rightTextView, rightTextViewStub);
+    inflateRightTextViewIfNeed();
     rightTextView.setTypeface(null, style);
   }
 
   public void setRightIcon(int drawableRes) {
-    inflateIfNeed(rightIconView, rightIconViewStub);
+    inflateRightIconViewIfNeed();
     rightIconView.setImageResource(drawableRes);
   }
 
   public void setRightIcon2(int drawableRes) {
-    inflateIfNeed(rightIcon2View, rightIcon2ViewStub);
+    inflateRightIcon2ViewIfNeed();
     rightIcon2View.setImageResource(drawableRes);
   }
 
   public void setRightIcon3(int drawableRes) {
-    inflateIfNeed(rightIcon3View, rightIcon3ViewStub);
+    inflateRightIcon3ViewIfNeed();
     rightIcon3View.setImageResource(drawableRes);
   }
 
   public void setRightIcon4(int drawableRes) {
-    inflateIfNeed(rightIcon4View, rightIcon4ViewStub);
+    inflateRightIcon4ViewIfNeed();
     rightIcon4View.setImageResource(drawableRes);
   }
 
   public void setRightIcon5(int drawableRes) {
-    inflateIfNeed(rightIcon5View, rightIcon5ViewStub);
+    inflateRightIcon5ViewIfNeed();
     rightIcon5View.setImageResource(drawableRes);
   }
 
   public void setRightTextSize(@Px int textSize) {
-    inflateIfNeed(rightTextView, rightTextViewStub);
+    inflateRightTextViewIfNeed();
     rightTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
   }
 
   public void setRightTextOnClickListener(View.OnClickListener listener) {
-    inflateIfNeed(rightTextView, rightTextViewStub);
+    inflateRightTextViewIfNeed();
     rightTextView.setOnClickListener(listener);
   }
 
   public void setRightIconOnClickListener(View.OnClickListener listener) {
-    inflateIfNeed(rightIconView, rightIconViewStub);
+    inflateRightIconViewIfNeed();
     rightIconView.setOnClickListener(listener);
   }
 
   public void setRightIcon2OnClickListener(View.OnClickListener listener) {
-    inflateIfNeed(rightIcon2View, rightIcon2ViewStub);
+    inflateRightIcon2ViewIfNeed();
     rightIcon2View.setOnClickListener(listener);
   }
 
   public void setRightIcon3OnClickListener(View.OnClickListener listener) {
-    inflateIfNeed(rightIcon3View, rightIcon3ViewStub);
+    inflateRightIcon3ViewIfNeed();
     rightIcon3View.setOnClickListener(listener);
   }
 
   public void setRightIcon4OnClickListener(View.OnClickListener listener) {
-    inflateIfNeed(rightIcon4View, rightIcon4ViewStub);
+    inflateRightIcon4ViewIfNeed();
     rightIcon4View.setOnClickListener(listener);
   }
 
   public void setRightIcon5OnClickListener(View.OnClickListener listener) {
-    inflateIfNeed(rightIcon5View, rightIcon5ViewStub);
+    inflateRightIcon5ViewIfNeed();
     rightIcon5View.setOnClickListener(listener);
   }
 
+  /**
+   * helper
+   * */
   private <V extends View> V inflateIfNeed(V view, ViewStub viewStub) {
     if (view == null) {
       view = (V) viewStub.inflate();
     }
 
     return view;
+  }
+
+  private void inflateRightTextViewIfNeed() {
+    rightTextView = inflateIfNeed(rightTextView, rightTextViewStub);
+  }
+
+  private void inflateRightIconViewIfNeed() {
+    rightIconView = inflateIfNeed(rightIconView, rightIconViewStub);
+  }
+
+  private void inflateRightIcon2ViewIfNeed() {
+    rightIcon2View = inflateIfNeed(rightIcon2View, rightIcon2ViewStub);
+  }
+
+  private void inflateRightIcon3ViewIfNeed() {
+    rightIcon3View = inflateIfNeed(rightIcon3View, rightIcon3ViewStub);
+  }
+
+  private void inflateRightIcon4ViewIfNeed() {
+    rightIcon4View = inflateIfNeed(rightIcon4View, rightIcon4ViewStub);
+  }
+
+  private void inflateRightIcon5ViewIfNeed() {
+    rightIcon5View = inflateIfNeed(rightIcon5View, rightIcon5ViewStub);
+  }
+
+  private void inflateLeftTextViewIfNeed() {
+    leftTextView = inflateIfNeed(leftTextView, leftTextViewStub);
+  }
+
+  private void inflateLeftIconViewIfNeed() {
+    leftIconView = inflateIfNeed(leftIconView, leftIconViewStub);
+  }
+
+  private void inflateTitleViewIfNeed() {
+    titleTextView = inflateIfNeed(titleTextView, titleTextViewStub);
   }
 
   /**
