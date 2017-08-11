@@ -21,6 +21,7 @@
     </attr>
     <attr name="simpleToolbarBackgroundColor" format="reference|color" />
     <attr name="simpleToolbarHeight" format="reference|dimension" />
+    <attr name="simpleToolbarTitleSingleLine" format="reference|boolean" />
 
     <!-- widget style attributes -->
     <declare-styleable name="SimpleToolbar">
@@ -41,6 +42,7 @@
         </attr>
 
         <attr name="stb_title" format="string" />
+        <attr name="stb_titleSingleLine" format="reference|boolean" />
         <attr name="stb_titleTextSize" format="reference|dimension" />
         <attr name="stb_titleTextColor" format="reference|color" />
         <attr name="stb_titleTextStyle">

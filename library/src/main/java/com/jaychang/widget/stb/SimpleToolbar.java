@@ -59,6 +59,7 @@ public final class SimpleToolbar extends RelativeLayout {
   private int titleTextIconPosition;
   private int titleTextGravity;
   private ColorStateList titleTextColor;
+  private boolean isTitleSingleLine;
 
   private int rightIcon;
   private int rightIcon2;
@@ -81,6 +82,7 @@ public final class SimpleToolbar extends RelativeLayout {
   private int simpleToolbarTextStyle;
   private int simpleToolbarBackgroundColor;
   private int simpleToolbarHeight;
+  private boolean simpleToolbarTitleSingleLine;
   private boolean isTitleComponentInited = true;
   private boolean isLeftComponentTextInited = true;
   private boolean isRightComponentTextInited = true;
@@ -135,6 +137,7 @@ public final class SimpleToolbar extends RelativeLayout {
     titleTextIconPosition = typedArray.getInt(R.styleable.SimpleToolbar_stb_titleTextIconPosition, 0);
     titleTextColor = typedArray.getColorStateList(R.styleable.SimpleToolbar_stb_titleTextColor);
     titleTextStyle = typedArray.getInt(R.styleable.SimpleToolbar_stb_titleTextStyle, 0);
+    isTitleSingleLine = typedArray.getBoolean(R.styleable.SimpleToolbar_stb_titleSingleLine, true);
     titleTextGravity = typedArray.getInt(R.styleable.SimpleToolbar_stb_titleTextGravity, -1);
 
     rightIcon = typedArray.getResourceId(R.styleable.SimpleToolbar_stb_rightIcon, 0);
@@ -158,7 +161,8 @@ public final class SimpleToolbar extends RelativeLayout {
       R.attr.simpleToolbarTextSize,
       R.attr.simpleToolbarTextStyle,
       R.attr.simpleToolbarBackgroundColor,
-      R.attr.simpleToolbarHeight
+      R.attr.simpleToolbarHeight,
+      R.attr.simpleToolbarTitleSingleLine
     };
     TypedArray ta = context.obtainStyledAttributes(globalStyleAttrs);
     simpleToolbarTitleTextColor = ta.getColorStateList(0);
@@ -170,6 +174,7 @@ public final class SimpleToolbar extends RelativeLayout {
     simpleToolbarTextStyle = ta.getInt(6, 0);
     simpleToolbarBackgroundColor = ta.getResourceId(7, 0);
     simpleToolbarHeight = ta.getDimensionPixelSize(8, 0);
+    simpleToolbarTitleSingleLine = ta.getBoolean(9, false);
     ta.recycle();
 
     typedArray.recycle();
@@ -245,6 +250,8 @@ public final class SimpleToolbar extends RelativeLayout {
   }
 
   private void initTitleComponent() {
+    titleTextView.setClickable(false);
+
     if (titleTextIcon != 0) {
       setTitleTextIcon(titleTextIcon);
     }
@@ -270,6 +277,31 @@ public final class SimpleToolbar extends RelativeLayout {
       setTitleTextTypeface(simpleToolbarTitleTextStyle);
     } else if (simpleToolbarTextStyle != 0) {
       setTitleTextTypeface(simpleToolbarTextStyle);
+    }
+
+    if (simpleToolbarTitleTextGravity == 0){
+      setLeftMargin();
+    } else if (simpleToolbarTitleTextGravity == 1) {
+      setLeftMargin();
+      alightTitleCenter();
+    }
+
+    if (titleTextGravity == 0) {
+      setLeftMargin();
+    } else if (titleTextGravity == 1) {
+      alightTitleCenter();
+    } else if (simpleToolbarTitleTextGravity == 0){
+      setLeftMargin();
+    } else if (simpleToolbarTitleTextGravity == 1) {
+      alightTitleCenter();
+    } else {
+      setLeftMargin();
+    }
+
+    if (simpleToolbarTitleSingleLine) {
+      setTitleSingleLine(true);
+    } else {
+      setTitleSingleLine(isTitleSingleLine);
     }
 
     isTitleComponentInited = true;
@@ -354,27 +386,7 @@ public final class SimpleToolbar extends RelativeLayout {
     if (!isTitleComponentInited) {
       initTitleComponent();
     }
-    titleTextView.setClickable(false);
     titleTextView.setText(title);
-
-    if (simpleToolbarTitleTextGravity == 0){
-      setLeftMargin();
-    } else if (simpleToolbarTitleTextGravity == 1) {
-      setLeftMargin();
-      alightTitleCenter();
-    }
-
-    if (titleTextGravity == 0) {
-      setLeftMargin();
-    } else if (titleTextGravity == 1) {
-      alightTitleCenter();
-    } else if (simpleToolbarTitleTextGravity == 0){
-      setLeftMargin();
-    } else if (simpleToolbarTitleTextGravity == 1) {
-      alightTitleCenter();
-    } else {
-      setLeftMargin();
-    }
   }
 
   public void setLeftMargin() {
@@ -423,6 +435,13 @@ public final class SimpleToolbar extends RelativeLayout {
   public void setTitleOnClickListener(View.OnClickListener listener) {
     inflateTitleViewIfNeed();
     titleTextView.setOnClickListener(listener);
+  }
+
+  public void setTitleSingleLine(boolean isSingleLine) {
+    titleTextView.setSingleLine(isSingleLine);
+    if (isSingleLine) {
+      titleTextView.setEllipsize(TextUtils.TruncateAt.END);
+    }
   }
 
   /**
