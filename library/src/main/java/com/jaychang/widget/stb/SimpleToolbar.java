@@ -358,31 +358,30 @@ public final class SimpleToolbar extends RelativeLayout {
     titleTextView.setText(title);
 
     if (simpleToolbarTitleTextGravity == 0){
-      LayoutParams params = ((LayoutParams) titleTextView.getLayoutParams());
-      params.leftMargin = AppUtils.dp2px(getContext(), 72 - 16);
+      setLeftMargin();
     } else if (simpleToolbarTitleTextGravity == 1) {
-      LayoutParams params = ((LayoutParams) titleTextView.getLayoutParams());
-      params.addRule(RelativeLayout.CENTER_IN_PARENT);
-      titleTextView.setLayoutParams(params);
+      setLeftMargin();
+      alightTitleCenter();
     }
 
     if (titleTextGravity == 0) {
-      alightTitleLeft();
+      setLeftMargin();
     } else if (titleTextGravity == 1) {
       alightTitleCenter();
     } else if (simpleToolbarTitleTextGravity == 0){
-      alightTitleLeft();
+      setLeftMargin();
     } else if (simpleToolbarTitleTextGravity == 1) {
       alightTitleCenter();
     } else {
-      alightTitleLeft();
+      setLeftMargin();
     }
   }
 
-  public void alightTitleLeft() {
+  public void setLeftMargin() {
     inflateTitleViewIfNeed();
     LayoutParams params = ((LayoutParams) titleTextView.getLayoutParams());
     params.leftMargin = AppUtils.dp2px(getContext(), 72 - 16);
+    titleTextView.setLayoutParams(params);
   }
 
   public void alightTitleCenter() {
