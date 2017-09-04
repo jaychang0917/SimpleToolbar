@@ -39,6 +39,7 @@ dependencies {
     app:stb_titleTextStyle="normal(default)|bold|italic"
     app:stb_titleTextIcon="drawable"
     app:stb_titleTextIconPosition="left(default)|right"
+    app:stb_titleTextFont="build-in-font"
 
     app:stb_leftText="string"
     app:stb_leftTextColor="color"
@@ -47,11 +48,13 @@ dependencies {
     app:stb_leftTextSize="sp"
     app:stb_leftIcon="@drawable/ic_back"
     app:stb_leftTextStyle="normal(default)|bold|italic"
+    app:stb_leftTextFont="build-in-font"
 
     app:stb_rightText="string"
     app:stb_rightTextColor="color"
     app:stb_rightTextSize="sp"
     app:stb_rightTextStyle="normal(default)|bold|italic"
+    app:stb_rightTextFont="build-in-font"
     app:stb_rightTextIcon="drawable"
     app:stb_rightTextIconPosition="left(default)|right"
     app:stb_rightIcon="drawable"
@@ -77,6 +80,7 @@ You can apply styles for all SimpleToolbar instances in your app theme xml.
     <item name="simpleToolbarTitleTextGravity">left</item>
     <item name="simpleToolbarHeight">56dp</item>
     <item name="simpleToolbarBackgroundColor">@color/colorPrimary</item>
+    <item name="simpleToolbarTitleTextFont">sans-serif-thin</item>
 </style>
 ```
 
