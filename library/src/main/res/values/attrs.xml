@@ -22,6 +22,8 @@
     <attr name="simpleToolbarBackgroundColor" format="reference|color" />
     <attr name="simpleToolbarHeight" format="reference|dimension" />
     <attr name="simpleToolbarTitleSingleLine" format="reference|boolean" />
+    <attr name="simpleToolbarTitleTextFont" format="reference|string" />
+    <attr name="simpleToolbarTextFont" format="reference|string" />
 
     <!-- widget style attributes -->
     <declare-styleable name="SimpleToolbar">
@@ -40,6 +42,7 @@
             <enum name="left" value="0" />
             <enum name="right" value="1" />
         </attr>
+        <attr name="stb_leftTextFont" format="reference|string" />
 
         <attr name="stb_title" format="string" />
         <attr name="stb_titleSingleLine" format="reference|boolean" />
@@ -59,6 +62,7 @@
             <enum name="left" value="0" />
             <enum name="center" value="1" />
         </attr>
+        <attr name="stb_titleTextFont" format="reference|string" />
 
         <attr name="stb_rightIcon" format="reference" />
         <attr name="stb_rightIcon2" format="reference" />
@@ -78,6 +82,7 @@
             <enum name="right" value="0" />
             <enum name="left" value="1" />
         </attr>
+        <attr name="stb_rightTextFont" format="reference|string" />
 
     </declare-styleable>
 

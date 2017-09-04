@@ -3,7 +3,9 @@ package com.jaychang.widget.stb;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
+import android.graphics.Typeface;
 import android.support.annotation.ColorInt;
+import android.support.annotation.Nullable;
 import android.support.annotation.Px;
 import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
@@ -48,6 +50,7 @@ public final class SimpleToolbar extends RelativeLayout {
   private CharSequence leftText;
   private int leftTextSize;
   private int leftTextStyle;
+  private String leftTextFont;
   private int leftTextIcon;
   private int leftTextIconPosition;
   private ColorStateList leftTextColor;
@@ -55,6 +58,7 @@ public final class SimpleToolbar extends RelativeLayout {
   private CharSequence title;
   private int titleTextSize;
   private int titleTextStyle;
+  private String titleTextFont;
   private int titleTextIcon;
   private int titleTextIconPosition;
   private int titleTextGravity;
@@ -71,15 +75,18 @@ public final class SimpleToolbar extends RelativeLayout {
   private int rightTextIcon;
   private int rightTextIconPosition;
   private int rightTextStyle;
+  private String rightTextFont;
   private ColorStateList rightTextColor;
 
   private ColorStateList simpleToolbarTitleTextColor;
   private int simpleToolbarTitleTextSize;
   private int simpleToolbarTitleTextStyle;
+  private String simpleToolbarTitleTextFont;
   private int simpleToolbarTitleTextGravity;
   private ColorStateList simpleToolbarTextColor;
   private int simpleToolbarTextSize;
   private int simpleToolbarTextStyle;
+  private String simpleToolbarTextFont;
   private int simpleToolbarBackgroundColor;
   private int simpleToolbarHeight;
   private boolean simpleToolbarTitleSingleLine;
@@ -130,15 +137,17 @@ public final class SimpleToolbar extends RelativeLayout {
     leftTextIconPosition = typedArray.getInt(R.styleable.SimpleToolbar_stb_leftTextIconPosition, 0);
     leftTextColor = typedArray.getColorStateList(R.styleable.SimpleToolbar_stb_leftTextColor);
     leftTextStyle = typedArray.getInt(R.styleable.SimpleToolbar_stb_leftTextStyle, 0);
+    leftTextFont = typedArray.getString(R.styleable.SimpleToolbar_stb_leftTextFont);
 
     title = typedArray.getString(R.styleable.SimpleToolbar_stb_title);
     titleTextSize = typedArray.getDimensionPixelSize(R.styleable.SimpleToolbar_stb_titleTextSize, PIXEL_SIZE_20);
     titleTextIcon = typedArray.getResourceId(R.styleable.SimpleToolbar_stb_titleTextIcon, 0);
     titleTextIconPosition = typedArray.getInt(R.styleable.SimpleToolbar_stb_titleTextIconPosition, 0);
     titleTextColor = typedArray.getColorStateList(R.styleable.SimpleToolbar_stb_titleTextColor);
-    titleTextStyle = typedArray.getInt(R.styleable.SimpleToolbar_stb_titleTextStyle, 0);
     isTitleSingleLine = typedArray.getBoolean(R.styleable.SimpleToolbar_stb_titleSingleLine, true);
     titleTextGravity = typedArray.getInt(R.styleable.SimpleToolbar_stb_titleTextGravity, -1);
+    titleTextStyle = typedArray.getInt(R.styleable.SimpleToolbar_stb_titleTextStyle, 0);
+    titleTextFont = typedArray.getString(R.styleable.SimpleToolbar_stb_titleTextFont);
 
     rightIcon = typedArray.getResourceId(R.styleable.SimpleToolbar_stb_rightIcon, 0);
     rightIcon2 = typedArray.getResourceId(R.styleable.SimpleToolbar_stb_rightIcon2, 0);
@@ -151,6 +160,7 @@ public final class SimpleToolbar extends RelativeLayout {
     rightTextIconPosition = typedArray.getInt(R.styleable.SimpleToolbar_stb_rightTextIconPosition, 0);
     rightTextColor = typedArray.getColorStateList(R.styleable.SimpleToolbar_stb_rightTextColor);
     rightTextStyle = typedArray.getInt(R.styleable.SimpleToolbar_stb_rightTextStyle, 0);
+    rightTextFont = typedArray.getString(R.styleable.SimpleToolbar_stb_rightTextFont);
 
     int[] globalStyleAttrs = new int[]{
       R.attr.simpleToolbarTitleTextColor,
@@ -162,7 +172,9 @@ public final class SimpleToolbar extends RelativeLayout {
       R.attr.simpleToolbarTextStyle,
       R.attr.simpleToolbarBackgroundColor,
       R.attr.simpleToolbarHeight,
-      R.attr.simpleToolbarTitleSingleLine
+      R.attr.simpleToolbarTitleSingleLine,
+      R.attr.simpleToolbarTitleTextFont,
+      R.attr.simpleToolbarTextFont
     };
     TypedArray ta = context.obtainStyledAttributes(globalStyleAttrs);
     simpleToolbarTitleTextColor = ta.getColorStateList(0);
@@ -175,6 +187,8 @@ public final class SimpleToolbar extends RelativeLayout {
     simpleToolbarBackgroundColor = ta.getResourceId(7, 0);
     simpleToolbarHeight = ta.getDimensionPixelSize(8, 0);
     simpleToolbarTitleSingleLine = ta.getBoolean(9, false);
+    simpleToolbarTitleTextFont = ta.getString(10);
+    simpleToolbarTextFont = ta.getString(11);
     ta.recycle();
 
     typedArray.recycle();
@@ -226,10 +240,18 @@ public final class SimpleToolbar extends RelativeLayout {
       setLeftTextColor(WHITE);
     }
 
-    if (leftTextStyle != 0) {
-      setLeftTextStyle(leftTextStyle);
-    } else if (simpleToolbarTextStyle != 0) {
-      setLeftTextStyle(simpleToolbarTextStyle);
+
+    setLeftTextStyle(simpleToolbarTextFont, simpleToolbarTextStyle);
+    if (!TextUtils.isEmpty(leftTextFont) && leftTextStyle == 0) {
+      setLeftTextStyle(leftTextFont, simpleToolbarTextStyle != 0? simpleToolbarTextStyle: Typeface.NORMAL);
+    } else if (!TextUtils.isEmpty(leftTextFont) && leftTextStyle != 0) {
+      setLeftTextStyle(leftTextFont, leftTextStyle);
+    } else if (TextUtils.isEmpty(leftTextFont) && leftTextStyle != 0) {
+      if (!TextUtils.isEmpty(simpleToolbarTextFont)) {
+        setLeftTextStyle(simpleToolbarTextFont, leftTextStyle);
+      } else {
+        setLeftTextStyle(leftTextStyle);
+      }
     }
 
     setLeftTextSize(leftTextSize);
@@ -271,12 +293,17 @@ public final class SimpleToolbar extends RelativeLayout {
       setTitleTextSize(simpleToolbarTitleTextSize);
     }
 
-    if (titleTextStyle != 0) {
-      setTitleTextTypeface(titleTextStyle);
-    } else if (simpleToolbarTitleTextStyle != 0) {
-      setTitleTextTypeface(simpleToolbarTitleTextStyle);
-    } else if (simpleToolbarTextStyle != 0) {
-      setTitleTextTypeface(simpleToolbarTextStyle);
+    setTitleTextTypeface(simpleToolbarTitleTextFont, simpleToolbarTitleTextStyle);
+    if (!TextUtils.isEmpty(titleTextFont) && titleTextStyle == 0) {
+      setTitleTextTypeface(titleTextFont, simpleToolbarTitleTextStyle != 0? simpleToolbarTitleTextStyle: Typeface.NORMAL);
+    } else if (!TextUtils.isEmpty(titleTextFont) && titleTextStyle != 0) {
+      setTitleTextTypeface(titleTextFont, titleTextStyle);
+    } else if (TextUtils.isEmpty(titleTextFont) && titleTextStyle != 0) {
+      if (!TextUtils.isEmpty(simpleToolbarTitleTextFont)) {
+        setTitleTextTypeface(simpleToolbarTitleTextFont, titleTextStyle);
+      } else {
+        setTitleTextTypeface(titleTextStyle);
+      }
     }
 
     if (simpleToolbarTitleTextGravity == 0){
@@ -349,10 +376,17 @@ public final class SimpleToolbar extends RelativeLayout {
       setRightTextColor(WHITE);
     }
 
-    if (rightTextStyle != 0) {
-      setRightTextStyle(rightTextStyle);
-    } else if (simpleToolbarTextStyle != 0) {
-      setRightTextStyle(simpleToolbarTextStyle);
+    setRightTextStyle(simpleToolbarTextFont, simpleToolbarTextStyle);
+    if (!TextUtils.isEmpty(rightTextFont) && rightTextStyle == 0) {
+      setRightTextStyle(rightTextFont, simpleToolbarTextStyle != 0? simpleToolbarTextStyle: Typeface.NORMAL);
+    } else if (!TextUtils.isEmpty(rightTextFont) && rightTextStyle != 0) {
+      setRightTextStyle(rightTextFont, rightTextStyle);
+    } else if (TextUtils.isEmpty(rightTextFont) && rightTextStyle != 0) {
+      if (!TextUtils.isEmpty(simpleToolbarTextFont)) {
+        setRightTextStyle(simpleToolbarTextFont, rightTextStyle);
+      } else {
+        setRightTextStyle(rightTextStyle);
+      }
     }
 
     setRightTextSize(rightTextSize);
@@ -422,9 +456,17 @@ public final class SimpleToolbar extends RelativeLayout {
     titleTextView.setTextColor(colorStateList);
   }
 
-  public void setTitleTextTypeface(int typeface) {
+  public void setTitleTextTypeface(@Nullable String font, int typeface) {
     inflateTitleViewIfNeed();
-    titleTextView.setTypeface(null, typeface);
+    if (font != null) {
+      titleTextView.setTypeface(Typeface.create(font, typeface));
+    } else {
+      titleTextView.setTypeface(null, typeface);
+    }
+  }
+
+  public void setTitleTextTypeface(int typeface) {
+    setTitleTextTypeface(null, typeface);
   }
 
   public void setTitleTextSize(@Px int textSize) {
@@ -478,9 +520,17 @@ public final class SimpleToolbar extends RelativeLayout {
     leftTextView.setTextColor(colorStateList);
   }
 
-  public void setLeftTextStyle(int style) {
+  public void setLeftTextStyle(@Nullable String font, int style) {
     inflateLeftTextViewIfNeed();
-    leftTextView.setTypeface(null, style);
+    if (font != null) {
+      leftTextView.setTypeface(Typeface.create(font, style));
+    } else {
+      leftTextView.setTypeface(null, style);
+    }
+  }
+
+  public void setLeftTextStyle(int style) {
+    setLeftTextStyle(null, style);
   }
 
   public void setLeftTextSize(@Px int textSize) {
@@ -547,9 +597,17 @@ public final class SimpleToolbar extends RelativeLayout {
     rightTextView.setTextColor(colorStateList);
   }
 
-  public void setRightTextStyle(int style) {
+  public void setRightTextStyle(@Nullable String font, int typeface) {
     inflateRightTextViewIfNeed();
-    rightTextView.setTypeface(null, style);
+    if (font != null) {
+      rightTextView.setTypeface(Typeface.create(font, typeface));
+    } else {
+      rightTextView.setTypeface(null, typeface);
+    }
+  }
+
+  public void setRightTextStyle(int typeface) {
+    setRightTextStyle(null, typeface);
   }
 
   public void setRightIcon(int drawableRes) {

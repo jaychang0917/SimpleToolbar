@@ -14,6 +14,7 @@
         <item name="simpleToolbarTitleTextGravity">left</item>
         <item name="simpleToolbarHeight">56dp</item>
         <item name="simpleToolbarBackgroundColor">@color/colorPrimary</item>
+        <item name="simpleToolbarTitleTextFont">sans-serif-thin</item>
     </style>
 
 </resources>
