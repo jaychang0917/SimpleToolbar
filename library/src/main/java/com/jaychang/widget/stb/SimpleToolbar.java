@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.support.annotation.Px;
@@ -94,6 +95,8 @@ public final class SimpleToolbar extends RelativeLayout {
   private boolean isLeftComponentTextInited = true;
   private boolean isRightComponentTextInited = true;
 
+  private Drawable backgroundDrawable;
+
   public SimpleToolbar(Context context) {
     this(context, null);
   }
@@ -162,6 +165,17 @@ public final class SimpleToolbar extends RelativeLayout {
     rightTextStyle = typedArray.getInt(R.styleable.SimpleToolbar_stb_rightTextStyle, 0);
     rightTextFont = typedArray.getString(R.styleable.SimpleToolbar_stb_rightTextFont);
 
+    typedArray.recycle();
+
+    // background attr
+    int[] backgroundAttr = new int[] {
+      android.R.attr.background
+    };
+    TypedArray bgTypeArray = context.obtainStyledAttributes(attrs, backgroundAttr);
+    backgroundDrawable = bgTypeArray.getDrawable(0);
+    bgTypeArray.recycle();
+
+    // global attr
     int[] globalStyleAttrs = new int[]{
       R.attr.simpleToolbarTitleTextColor,
       R.attr.simpleToolbarTitleTextSize,
@@ -190,8 +204,6 @@ public final class SimpleToolbar extends RelativeLayout {
     simpleToolbarTitleTextFont = ta.getString(10);
     simpleToolbarTextFont = ta.getString(11);
     ta.recycle();
-
-    typedArray.recycle();
   }
 
   @Override
@@ -398,7 +410,9 @@ public final class SimpleToolbar extends RelativeLayout {
   }
 
   private void initBackground() {
-    if (simpleToolbarBackgroundColor != 0) {
+    if (backgroundDrawable != null) {
+      setBackgroundDrawable(backgroundDrawable);
+    } else if (simpleToolbarBackgroundColor != 0) {
       setBackgroundResource(simpleToolbarBackgroundColor);
     } else {
       int colorPrimary = Utils.getAttrResourceId(getContext(), R.attr.colorPrimary);
